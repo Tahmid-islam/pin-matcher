@@ -19,7 +19,12 @@ document.getElementById("key-pad").addEventListener("click", function (event) {
   const calcInput = document.getElementById("typed-numbers");
   if (isNaN(number)) {
     if (number == "C") {
-        calcInput.value = "";
+      calcInput.value = "";
+    } else if (number == "<") {
+      calcInput.value = calcInput.value.substring(
+        0,
+        calcInput.value.length - 1
+      );
     }
   } else {
     const previousNumber = calcInput.value;
@@ -28,19 +33,16 @@ document.getElementById("key-pad").addEventListener("click", function (event) {
   }
 });
 
-function verifyPin(){
-    const pin = document.getElementById("display-pin").value;
-    const typedNumbers = document.getElementById("typed-numbers").value;
-    const successMessage = document.getElementById("notify-success");
-    const failError = document.getElementById("notify-fail");
-    if(pin == typedNumbers){
-        
-        successMessage.style.display='block';
-        failError.style.display='none';
-       
-    }else{
-        
-        failError.style.display='block';
-        successMessage.style.display='none';
-    }
+function verifyPin() {
+  const pin = document.getElementById("display-pin").value;
+  const typedNumbers = document.getElementById("typed-numbers").value;
+  const successMessage = document.getElementById("notify-success");
+  const failError = document.getElementById("notify-fail");
+  if (pin == typedNumbers) {
+    successMessage.style.display = "block";
+    failError.style.display = "none";
+  } else {
+    failError.style.display = "block";
+    successMessage.style.display = "none";
+  }
 }
